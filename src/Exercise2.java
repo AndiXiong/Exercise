@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 
-public class Exercise {
+public class Exercise2 {
     public static void main(String args[]) {
         test1();
         test2();
@@ -9,15 +9,16 @@ public class Exercise {
     }
 
     /**
-     * Given an arraylist of integers, find the length of the longest sub-sequence
-     * such that it is non-descending.
-     * ie. If the list is [1,1], you should return 2
-     * ie. If the list is [1,2,3,4,5,4,3,2,1], you should return 5
+     * Given an arraylist of integers, find the length of the longest unimodal sequence.
+     * Unimodal is defined as
+     * ie. If the list is [1,1], you should return 0
+     * ie. If the list is [1,2,1], you should return 3
+     * ie. If the list is [1,2,3,4,5,4,3,2,1], you should return 9
      * ie. If the list is [5,4,3,2,1], you should return 0
-     * ie. If the list is [1,2,3,2,1,4,5,9,4,3,2,1], you should return 4
+     * ie. If the list is [1,2,3,2,1,4,5,9,4,3,2,1], you should return 8
      * @return the length of the longest non-descending sub-sequence
      */
-    public static int LongestNonDescendingSequence(ArrayList<Integer> list) {
+    public static int LongestUnimodalSequence(ArrayList<Integer> list) {
         int longest = 0;
         int count, j;
 
@@ -25,6 +26,10 @@ public class Exercise {
             j = 0;
             count = 0;
             while( j < list.size() && list.get(j) < list.get(j + 1)) {
+                count++;
+                j++;
+            }
+            while( j < list.size() && list.get(j) > list.get(j + 1)) {
                 count++;
                 j++;
             }
@@ -43,7 +48,7 @@ public class Exercise {
             add(3);
         }};
 
-        if(LongestNonDescendingSequence(nums) == 3)
+        if(LongestUnimodalSequence(nums) == 0)
             System.out.println("Passed test 1");
         else
             System.out.println("Failed test 1");
@@ -59,7 +64,7 @@ public class Exercise {
             add(9);
         }};
 
-        if(LongestNonDescendingSequence(nums) == 3)
+        if(LongestUnimodalSequence(nums) == 3)
             System.out.println("Passed test 2");
         else
             System.out.println("Failed test 2");
@@ -75,7 +80,7 @@ public class Exercise {
             add(4);
         }};
 
-        if(LongestNonDescendingSequence(nums) == 0)
+        if(LongestUnimodalSequence(nums) == 0)
             System.out.println("Passed test 3");
         else
             System.out.println("Failed test 3");
